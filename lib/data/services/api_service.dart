@@ -1,8 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final apiServiceProvider = Provider((ref) {
+  return ApiService(); 
+});
 
 class ApiService {
   final Dio _dio = Dio(BaseOptions(
-    baseUrl: '192.168.0.109:8080/api/v1/',
+    baseUrl: 'http://192.168.0.109:8080/api/v1/',
     connectTimeout: Duration(seconds: 5),
   ));
 
