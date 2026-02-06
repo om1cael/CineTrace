@@ -5,7 +5,7 @@ import 'package:cinetrace/domain/repositories/movie_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final movieRepositoryProvider = Provider((ref) {
-  return MovieRepositoryImpl(apiService: ref.read(apiServiceProvider));
+  return MovieRepositoryImpl(apiService: ref.watch(apiServiceProvider));
 });
 
 class MovieRepositoryImpl implements MovieRepository {
