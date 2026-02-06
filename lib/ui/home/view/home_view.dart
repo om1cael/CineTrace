@@ -15,7 +15,10 @@ class HomeView extends StatelessWidget {
             final movieState = ref.watch(homeViewModelAsyncProvider);
 
             return movieState.when(
-              data: (movies) => ListView.builder(
+              data: (movies) => GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2
+                ),
                 itemCount: movies.length,
                 itemBuilder: (_, id) {
                   final movie = movies[id];
@@ -25,29 +28,31 @@ class HomeView extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: .start,
-                        spacing: 8.0,
                         children: [
-                          Row(
-                            mainAxisAlignment: .spaceBetween,
-                            children: [
-                              Text(
-                                movie.title,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                movie.releaseDate.toString(),
-                              ),
-                            ],
+                          Text(
+                            movie.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          Text(movie.overview),
+                          SizedBox(width: 30,),
+                          Expanded(
+                            child: Text(
+                              movie.overview,
+                              maxLines: 4,
+                              textAlign: TextAlign.left,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Text(
+                            movie.releaseDate.toString(),
+                          ),
                         ],
                       ),
                     ),
                   );
                 }
-              ), 
+              ),
               error: (error, stack) => Center(child: Text('An error occurred: $error')),
               loading: () => Center(child: CircularProgressIndicator()),
             );
