@@ -11,7 +11,7 @@ final routerConfig = GoRouter(
     GoRoute(
       path: '/movies/:id',
       builder: (_, state) {
-        final movieId = state.pathParameters['id'] as int;
+        final movieId = state.pathParameters['id'];
         return MovieView(movieId: movieId);
       }
     )

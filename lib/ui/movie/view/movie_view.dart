@@ -6,7 +6,7 @@ class MovieView extends StatelessWidget {
     required this.movieId,
   });
 
-  final int movieId;
+  final String? movieId;
 
   @override
   Widget build(BuildContext context) {
