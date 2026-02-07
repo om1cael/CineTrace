@@ -15,4 +15,9 @@ class ApiService {
     final response = await _dio.get('/movies/popular');
     return response.data;
   }
+
+  Future<dynamic> getMovieById(int id) async {
+    final response = await _dio.get('/movies/$id');
+    return response.data;
+  }
 }

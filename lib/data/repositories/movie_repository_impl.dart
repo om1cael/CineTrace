@@ -24,4 +24,10 @@ class MovieRepositoryImpl implements MovieRepository {
         return model.toEntity();
       }).toList();
   }
+  
+  @override
+  Future<MovieEntity> getMovieById(int id) async {
+    final movie = await _apiService.getMovieById(id);
+    return MovieModel.fromJson(movie).toEntity();
+  }
 }
