@@ -4,7 +4,7 @@ import 'package:cinetrace/domain/entities/review_entity.dart';
 import 'package:cinetrace/domain/repositories/reviews_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final movieRepositoryProvider = Provider((ref) {
+final reviewsRepositoryProvider = Provider((ref) {
   return ReviewsRepositoryImpl(apiService: ref.watch(apiServiceProvider));
 });
 
