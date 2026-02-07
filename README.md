@@ -1,4 +1,4 @@
-# 🎬 CineTrace
+# 🎬 CineTrace (WIP)
 
 CineTrace is a movie discovery application built with **Flutter**. It features a robust architecture designed for scalability and a smooth user experience.
 
