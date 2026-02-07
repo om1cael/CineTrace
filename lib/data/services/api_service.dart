@@ -20,4 +20,9 @@ class ApiService {
     final response = await _dio.get('/movies/$id');
     return response.data;
   }
+
+  Future<List<dynamic>> getAllMovieReviews(int movieId) async {
+    final response = await _dio.get('/reviews/$movieId');
+    return response.data;
+  }
 }
