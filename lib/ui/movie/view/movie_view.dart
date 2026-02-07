@@ -31,7 +31,7 @@ class MovieView extends ConsumerWidget {
         minimum: EdgeInsets.all(16.0),
         child: movie.when(
           data: (data) {
-            return Center(
+            return SingleChildScrollView(
               child: Column(
                 children: [
                   Text(data.title, style: TextStyle(fontSize: 24, fontWeight: .bold),),
@@ -74,6 +74,7 @@ class MovieView extends ConsumerWidget {
                           }
 
                           return ListView.separated(
+                            physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemBuilder: (_, id) {
                               final review = data[id];
