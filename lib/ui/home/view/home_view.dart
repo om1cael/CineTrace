@@ -1,3 +1,4 @@
+import 'package:cinetrace/ui/core/connection_error.dart';
 import 'package:cinetrace/ui/home/view_model/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -54,7 +55,14 @@ class HomeView extends StatelessWidget {
                   );
                 }
               ),
-              error: (error, stack) => Center(child: Text('An error occurred: $error')),
+              error: (error, stack) => Column(
+                mainAxisAlignment: .center,
+                children: [
+                  ConnectionError(
+                    errorMessage: error.toString(),
+                  ),
+                ],
+              ),
               loading: () => Center(child: CircularProgressIndicator()),
             );
           }
