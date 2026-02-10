@@ -104,7 +104,7 @@ class MovieView extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => context.go('/reviews/${movieId!}')
+        onPressed: () => context.push('/reviews/${movieId!}')
       ),
     );
   }
