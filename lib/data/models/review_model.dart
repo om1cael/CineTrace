@@ -16,14 +16,24 @@ class ReviewModel {
   });
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) {
-      return ReviewModel(
-        id: json['id'] as int,
-        movieId: json['movieId'] as int,
-        author: json['author'] as String? ?? 'Anonymous',
-        content: json['content'] as String,
-        stars: json['stars'] as int? ?? 0,
-      );
-    }
+    return ReviewModel(
+      id: json['id'] as int,
+      movieId: json['movieId'] as int,
+      author: json['author'] as String? ?? 'Anonymous',
+      content: json['content'] as String,
+      stars: json['stars'] as int? ?? 0,
+    );
+  }
+
+  factory ReviewModel.fromEntity(ReviewEntity reviewEntity) {
+    return ReviewModel(
+      id: reviewEntity.id, 
+      movieId: reviewEntity.movieId, 
+      author: reviewEntity.author, 
+      content: reviewEntity.content, 
+      stars: reviewEntity.stars
+    );
+  }
 
   ReviewEntity toEntity() {
     return ReviewEntity(
