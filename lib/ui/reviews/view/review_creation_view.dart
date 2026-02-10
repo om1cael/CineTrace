@@ -19,6 +19,12 @@ class _ReviewCreationViewState extends ConsumerState<ReviewCreationView> {
   int _rating = 5;
 
   @override
+  void dispose() {
+    super.dispose();
+    _reviewTextController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final movieId = int.parse(widget.movieId!);
     final movie = ref.watch(movieViewModelProvider(movieId));
