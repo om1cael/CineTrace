@@ -19,4 +19,9 @@ class ReviewViewModel extends AsyncNotifier<List<ReviewEntity>> {
   Future<List<ReviewEntity>> getAllMovieReviews() async {
     return await ref.read(reviewsRepositoryProvider).getAllMovieReviews(movieId);
   }
+
+  String? validateReview(String? value, String minimumCharactersText) {
+    if(value == null || value.isEmpty || value.length < 10) return minimumCharactersText;
+    return null;
+  }
 }

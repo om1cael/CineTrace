@@ -1,5 +1,6 @@
 import 'package:cinetrace/ui/core/connection_error.dart';
 import 'package:cinetrace/ui/movie/view_model/movie_view_model.dart';
+import 'package:cinetrace/ui/reviews/view_model/review_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -13,9 +14,14 @@ class ReviewCreationView extends ConsumerStatefulWidget {
 }
 
 class _ReviewCreationViewState extends ConsumerState<ReviewCreationView> {
+  final _formKey = GlobalKey<FormState>();
+  final _reviewTextController = TextEditingController();
+  int _rating = 5;
+
   @override
   Widget build(BuildContext context) {
-    final movie = ref.watch(movieViewModelProvider(int.parse(widget.movieId!)));
+    final movieId = int.parse(widget.movieId!);
+    final movie = ref.watch(movieViewModelProvider(movieId));
 
     return Scaffold(
       appBar: AppBar(
@@ -31,6 +37,7 @@ class _ReviewCreationViewState extends ConsumerState<ReviewCreationView> {
           data: (data) {
             return SingleChildScrollView(
               child: Form(
+                key: _formKey,
                 child: Column(
                   crossAxisAlignment: .start,
                   children: [
@@ -43,6 +50,12 @@ class _ReviewCreationViewState extends ConsumerState<ReviewCreationView> {
                     TextFormField(
                       maxLines: 8,
                       maxLength: 500,
+                      controller: _reviewTextController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        return ref.read(reviewViewModelProvider(movieId).notifier)
+                          .validateReview(value, 'Minimum of 10 characters.');
+                      }
                     ),
                     Text(
                       'Give your rating',
@@ -53,8 +66,12 @@ class _ReviewCreationViewState extends ConsumerState<ReviewCreationView> {
                     Row(
                       children: List.generate(5, (index) {
                         return IconButton(
-                          onPressed: () {}, 
-                          icon: Icon(Icons.star_border)
+                          onPressed: () => {
+                            setState(() {
+                              _rating = index + 1;
+                            }),
+                          }, 
+                          icon: _rating >= (index + 1) ? Icon(Icons.star) : Icon(Icons.star_border)
                         );
                       }),
                     ),
@@ -70,8 +87,10 @@ class _ReviewCreationViewState extends ConsumerState<ReviewCreationView> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if(!_formKey.currentState!.validate()) return;
+        },
         child: Icon(Icons.create),
-        onPressed: () {},
       ),
     );
   }
