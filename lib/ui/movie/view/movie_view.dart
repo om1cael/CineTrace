@@ -101,7 +101,11 @@ class MovieView extends ConsumerWidget {
           ),
           loading: () => Center(child: CircularProgressIndicator()),
         )
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => context.go('/reviews/${movieId!}')
+      ),
     );
   }
 }
