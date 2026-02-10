@@ -11,17 +11,19 @@ class ReviewCreationView extends StatelessWidget {
       appBar: AppBar(
         title: Text("Creating review for MOVIE"),
         leading: IconButton(
-          onPressed: () {
-            if(context.canPop()) {
-              return context.pop();
-            }
-
-            context.go('/');
-          }, 
+          onPressed: () => goBack(context),
           icon: Icon(Icons.arrow_back),
         ),
       ),
       body: const Placeholder(),
     );
+  }
+
+  void goBack(BuildContext context) {
+    if(context.canPop()) {
+      return context.pop();
+    }
+
+    context.go('/');
   }
 }
