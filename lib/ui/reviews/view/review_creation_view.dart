@@ -95,12 +95,30 @@ class _ReviewCreationViewState extends ConsumerState<ReviewCreationView> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           if(!_formKey.currentState!.validate()) return;
-          await ref.read(reviewViewModelProvider(movieId).notifier)
-            .createReview(movieId, _reviewTextController.text, _rating);
           
-          if(context.mounted && context.canPop()) {
-            ref.invalidate(reviewViewModelProvider(movieId));
-            return context.pop();
+          try {
+            await ref.read(reviewViewModelProvider(movieId).notifier)
+              .createReview(movieId, _reviewTextController.text, _rating);
+
+            if(!context.mounted) return;
+            ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(
+                content: Text('Your review was created successfully'),
+              )
+            );
+
+            if(context.mounted && context.canPop()) {
+              ref.invalidate(reviewViewModelProvider(movieId));
+              return context.pop();
+            }
+          } on Exception {
+            if(!context.mounted) return;
+
+            ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(
+                content: Text('Could not create the review. Please, try again.'),
+              )
+            );
           }
         },
         child: Icon(Icons.create),
