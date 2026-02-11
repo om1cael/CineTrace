@@ -99,6 +99,7 @@ class _ReviewCreationViewState extends ConsumerState<ReviewCreationView> {
             .createReview(movieId, _reviewTextController.text, _rating);
           
           if(context.mounted && context.canPop()) {
+            ref.invalidate(reviewViewModelProvider(movieId));
             return context.pop();
           }
         },
