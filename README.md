@@ -23,9 +23,11 @@ This project follows **Clean Architecture** principles to ensure maintainability
 - **Icons**: Material Design Icons
 
 ## 📸 Preview
-| Movie Details | User Reviews |
-|---|---|
-| ![HomePage](https://github.com/user-attachments/assets/9902038b-afcb-4887-90aa-4b6ea1b400fa) | ![Movie Page](https://github.com/user-attachments/assets/b8588fd0-32be-47d0-a182-ac73205593ed) |
+| Movie Details | User Reviews | Creating a Review |
+|---|---|---|
+| ![HomePage](https://github.com/user-attachments/assets/9902038b-afcb-4887-90aa-4b6ea1b400fa) | ![User Review](https://github.com/user-attachments/assets/2f990ffb-ff98-497b-8d92-3a4127e2cfe1) | ![Creating a Review](https://github.com/user-attachments/assets/85f81425-3705-4135-8e3a-b825ff6bcd14)
+
+
 
 ## 🚀 Getting Started
 
