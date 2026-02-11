@@ -16,6 +16,18 @@ class ReviewViewModel extends AsyncNotifier<List<ReviewEntity>> {
     return getAllMovieReviews();
   }
 
+  Future<ReviewEntity> createReview(int movieId, String content, int stars) async {
+    final review = ReviewEntity(
+      id: 0,
+      movieId: movieId,
+      author: 'Test',
+      content: content,
+      stars: stars
+    );
+
+    return await ref.read(reviewsRepositoryProvider).createReview(movieId, review);
+  }
+
   Future<List<ReviewEntity>> getAllMovieReviews() async {
     return await ref.read(reviewsRepositoryProvider).getAllMovieReviews(movieId);
   }

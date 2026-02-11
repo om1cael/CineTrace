@@ -93,8 +93,12 @@ class _ReviewCreationViewState extends ConsumerState<ReviewCreationView> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           if(!_formKey.currentState!.validate()) return;
+          final newReview = await ref.read(reviewViewModelProvider(movieId).notifier)
+            .createReview(movieId, _reviewTextController.text, _rating);
+          
+          print(newReview);
         },
         child: Icon(Icons.create),
       ),

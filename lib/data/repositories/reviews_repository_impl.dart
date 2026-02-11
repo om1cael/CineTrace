@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cinetrace/data/models/review_model.dart';
 import 'package:cinetrace/data/services/api_service.dart';
 import 'package:cinetrace/domain/entities/review_entity.dart';
@@ -14,6 +16,17 @@ class ReviewsRepositoryImpl implements ReviewsRepository {
   const ReviewsRepositoryImpl({
     required ApiService apiService,
   }) : _apiService = apiService;
+
+  @override
+  Future<ReviewEntity> createReview(int movieId, ReviewEntity review) async {
+    final reviewModel = ReviewModel.fromEntity(review);
+    final reviewJson = jsonEncode(reviewModel);
+
+    final reviewResponse = await _apiService.createReview(movieId, reviewJson);
+    return ReviewModel
+      .fromJson(reviewResponse)
+      .toEntity();
+  }
 
   @override
   Future<List<ReviewEntity>> getAllMovieReviews(int movieId) async {
