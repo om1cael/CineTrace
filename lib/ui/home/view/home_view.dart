@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
                   final movie = movies[id];
         
                   return InkWell(
-                    onTap: () => context.go('/movies/${movie.id}'),
+                    onTap: () => context.push('/movies/${movie.id}'),
                     child: Card(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
