@@ -5,7 +5,7 @@ import 'package:cinetrace/domain/entities/movie_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final movieViewModelProvider = 
-  AsyncNotifierProvider.family<MovieViewModel, MovieEntity, int>(MovieViewModel.new);
+  AsyncNotifierProvider.autoDispose.family<MovieViewModel, MovieEntity, int>(MovieViewModel.new);
 
 class MovieViewModel extends AsyncNotifier<MovieEntity> {
   MovieViewModel(this.movieId);

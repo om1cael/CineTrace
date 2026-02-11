@@ -5,7 +5,7 @@ import 'package:cinetrace/domain/entities/review_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final reviewViewModelProvider = 
-  AsyncNotifierProvider.family<ReviewViewModel, List<ReviewEntity>, int>(ReviewViewModel.new);
+  AsyncNotifierProvider.autoDispose.family<ReviewViewModel, List<ReviewEntity>, int>(ReviewViewModel.new);
 
 class ReviewViewModel extends AsyncNotifier<List<ReviewEntity>> {
   ReviewViewModel(this.movieId);
