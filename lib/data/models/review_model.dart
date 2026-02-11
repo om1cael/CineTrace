@@ -15,6 +15,16 @@ class ReviewModel {
     required this.stars,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'movieId': movieId,
+      'author': author,
+      'content': content,
+      'stars': stars,
+    };
+  }
+
   factory ReviewModel.fromJson(Map<String, dynamic> json) {
     return ReviewModel(
       id: json['id'] as int,
